@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Library</title>
+    <!-- <link href="http://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" type="text/css"> -->
+    <link href="style.css" rel="stylesheet" type="text/css">
+  </head>
+  <body>
+    <div class="container">
+        <div class="sidebar">
+            <h3 class="side-title">Add Material</h3>
+            <button class="new-book">NEW BOOK</button>
+            <!-- form div is displayed under the NEW BOOK button when it is clicked -->
+            <form class="hidden inputs"> 
+                <div>
+                    <div class="label-input">
+                        <label for="title">Enter the book's title:</label>
+                        <input type="text" name="title" class="title" placeholder="ex. Ulysses"> 
+                    </div>
+                    <div class="label-input">
+                        <label for="author">Enter the book's author:</label>
+                        <input type="text" name="author" class="author" placeholder="ex. James Joyce">
+                    </div>
+                    <div class="label-input">
+                        <label for="pages">Enter the book's number of pages:</label>
+                        <input type="text" name="pages" class="pages" placeholder="ex. 720">
+                    </div>
+                    <div class="label-input">
+                        <label for="status">Have you read the book or not:</label>
+                        <input type="text" name="status" class="status" placeholder="Yes or No">
+                    </div>
+                    <div class="submit">
+                        <button class="submit-form">Submit</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="main-content">
+            <h3 class="main-title">Library Books</h3>
+            <div class="cards">
+            <!-- individuals cards become child elements here;
+                 when user inputs data in the form and clicks the Submit button
+                 each card is displayed under Library  -->
+            </div>
+        </div>
+    </div>
+    <script src="main.js">  
+    </script>
+  </body>
+</html>
