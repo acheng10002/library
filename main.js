@@ -25,14 +25,22 @@ newBookButton.addEventListener("click", () => {
 const submitButton = document.querySelector(".submit-form");
 
 // constructor of a Book object; parameters are values assigned to properties
-function Book(title, author, pages, status) {
+// function Book(title, author, pages, status) {
 
-    // this is the newly created object in the constructor
-    // Book.property = parameter;
-    this.title = title;
-    this.author = author;
-    this.pages = pages;
-    this.status = status;     
+//     // this is the newly created object in the constructor
+//     // Book.property = parameter;
+//     this.title = title;
+//     this.author = author;
+//     this.pages = pages;
+//     this.status = status;     
+// }
+class Book {
+    constructor(title, author, pages, status) {
+        this.title = title;
+        this.author = author;
+        this.pages = pages;
+        this.status = status;
+    }
 }
 
 // HANDLES SUBMISSION OF INPUTS, AND ADDS BOOK TO LIBRARY
