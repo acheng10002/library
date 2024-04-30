@@ -1,120 +1,135 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
 * {
-    font-family: 'Roboto', sans-serif;
-    font-weight: 900
+  font-family: "Roboto", sans-serif;
+  font-weight: 900;
 }
 
 .container {
-    display: grid;
-    grid-template: 1fr / 1fr 2.5fr;
-    max-height: 50vh;
-    max-width: 100vw
+  display: grid;
+  grid-template: 1fr / 1fr 2.5fr;
+  max-height: 50vh;
+  max-width: 100vw;
 }
 
 /* all sidebar parts and library's main title */
 .sidebar {
-    padding: 30px 20px 0px 20px;
-    border: 1px solid black;
-    grid-area: 1 / 1 / 2 / 2;
-    display: grid;
-    grid-template: 0.6fr 0.8fr 40fr / 1fr
-} 
+  padding: 30px 20px 0px 20px;
+  border: 1px solid black;
+  grid-area: 1 / 1 / 2 / 2;
+  display: grid;
+  grid-template: 0.6fr 0.8fr 40fr / 1fr;
+}
 
 .side-title {
-    margin: 0; 
-    grid-area: 1 / 1 / 2 / 2
+  margin: 0;
+  grid-area: 1 / 1 / 2 / 2;
 }
 
 .side-title,
 .main-title {
-    padding-top: 5px;
-    align-self: start;
-    text-align: center;
-    font-size: 30px
+  padding-top: 5px;
+  align-self: start;
+  text-align: center;
+  font-size: 30px;
 }
 
 .new-book {
-    padding: 10px 20px 10px 20px;
-    margin: 0;
-    grid-area: 2 / 1 / 3 / 2;
-    place-self: start center;
-    display: grid;
-    font-size: 30px
+  padding: 10px 20px 10px 20px;
+  margin: 0;
+  grid-area: 2 / 1 / 3 / 2;
+  place-self: start center;
+  display: grid;
+  font-size: 30px;
 }
 
 .inputs {
-    padding: 0;
-    margin: 0;
-    grid-area: 3 / 1 / 4 / 2;
-    display: grid;
-    grid-template: repeat(5, 1fr) / 1fr
+  padding: 0;
+  margin: 0;
+  grid-area: 3 / 1 / 4 / 2;
+  display: grid;
+  grid-template: repeat(5, 1fr) / 1fr;
 }
 
 .hidden {
-    display: none
+  display: none;
 }
 
 .label-input {
-    padding: 15px 15px 15px 0px
+  padding: 15px 15px 15px 0px;
 }
 
 label {
-    font-size: 16px
+  font-size: 16px;
 }
 
 input {
-    padding: 5px;
-    margin-top: 3px;
-    width: 100%;
-    font-size: 16px
+  padding: 5px;
+  margin-top: 3px;
+  width: 100%;
+  font-size: 16px;
 }
 
 .submit {
-    display: grid;
+  display: grid;
 }
 
 .submit-form {
-    border: none;
-    margin: 25px 0px 0px 0px;
-    place-self: center; 
-    font-size: 23px;
-    color: blue;
-    background-color: white
-
+  border: none;
+  margin: 25px 0px 0px 0px;
+  place-self: center;
+  font-size: 23px;
+  color: blue;
+  background-color: white;
 }
 
 /* library main section */
 .main-content {
-    border: 1px solid black;
-    grid-area: 1 / 2 / 2 / 3;
-    display: grid;
-    grid-template: 1fr 50fr / 1fr
+  border: 1px solid black;
+  grid-area: 1 / 2 / 2 / 3;
+  display: grid;
+  grid-template: 1fr 50fr / 1fr;
 }
 
 .cards {
-    padding: 0 20px 20px 20px;
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(430px, 0.5fr));
-    grid-template-rows: repeat(auto-fit, minmax(10px, 0.032fr));
-    align-items: start;
-    gap: 20px
+  padding: 0 20px 20px 20px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(430px, 0.5fr));
+  grid-template-rows: repeat(auto-fit, minmax(10px, 0.032fr));
+  align-items: start;
+  gap: 20px;
 }
 
 .aCard {
-    padding: 15px;
-    border: 1px solid black;
-    margin: 0;
-    height: auto;
-    max-width: 90vw;
-    align-self: start;
-    text-align: center;
-    line-height: 130%;
-    font-size: 16px
+  padding: 15px;
+  border: 1px solid black;
+  margin: 0;
+  height: auto;
+  max-width: 90vw;
+  align-self: start;
+  text-align: center;
+  line-height: 130%;
+  font-size: 16px;
 }
 
 .card-button {
-    margin: 10px 10px 0px 0px;
-    display: inline-block;
-    height: 32px;
-    width: 100px
+  margin: 10px 10px 0px 0px;
+  display: inline-block;
+  height: 32px;
+  width: 100px;
+}
+
+input:invalid {
+  border: 2px solid red;
+}
+
+input:focus:invalid {
+  border: 2px solid red;
+}
+
+input:invalid:required {
+  border: 2px solid gray;
+}
+
+input:valid {
+  border: 2px solid black;
 }
