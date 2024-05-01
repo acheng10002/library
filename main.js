@@ -14,90 +14,80 @@ const newBookButton = document.querySelector(".new-book");
 // selects the div with input fields
 const hiddenDiv = document.querySelector(".inputs");
 
-const title = document.querySelector(".title");
-const titleMessage = document.getElementById("title-message");
-
-function validateTitle() {
-  if (!title.checkValidity()) {
-    title.validationMessage;
-    titleMessage.textContent = "Please fill out this field.";
-    titleMessage.style.color = "red";
+function validateText(inputElement, messageElement) {
+  if (!inputElement.checkValidity()) {
+    inputElement.validationMessage;
+    messageElement.textContent = "Please fill out this field.";
+    messageElement.style.color = "red";
   } else {
-    titleMessage.textContent = "Input is valid.";
-    titleMessage.style.color = "green";
+    messageElement.textContent = "Input is valid.";
+    messageElement.style.color = "green";
   }
 }
 
-title.oninput = validateTitle;
-title.addEventListener("keyup", function (event) {
-  if (event.key === "Enter") {
-    validateTitle();
-    event.preventDefault();
-  }
-});
-
-const author = document.querySelector(".author");
-const authorMessage = document.getElementById("author-message");
-
-function validateAuthor() {
-  if (!author.checkValidity()) {
-    authorMessage.textContent = "Please fill out this field.";
-    authorMessage.style.color = "red";
+function validatePages(inputElement, messageElement) {
+  if (
+    inputElement.validity.valueMissing ||
+    inputElement.validity.rangeUnderflow
+  ) {
+    inputElement.setCustomValidity("Input is missing and invalid.");
   } else {
-    authorMessage.textContent = "Input is valid.";
-    authorMessage.style.color = "green";
-  }
-}
-
-author.oninput = validateAuthor;
-author.addEventListener("keyup", function (event) {
-  if (event.key === "Enter") {
-    validateAuthor();
-    event.preventDefault();
-  }
-});
-
-const pages = document.querySelector(".pages");
-const pagesMessage = document.getElementById("pages-message");
-
-function validatePages() {
-  if (pages.validity.valueMissing || pages.validity.rangeUnderflow) {
-    pages.setCustomValidity("Input is missing and invalid.");
-  } else {
-    pages.setCustomValidity("");
+    inputElement.setCustomValidity("");
   }
   // custom validity message is only displayed when prompted to, in call of reportValidity() on the input
-  pages.reportValidity();
+  inputElement.reportValidity();
 }
 
-pages.oninput = validatePages;
-pages.addEventListener("keyup", function (event) {
-  if (event.key === "Enter") {
-    validatePages();
-    event.preventDefault();
-  }
-});
-
-const readOrNot = document.querySelector(".status");
-const statusMessage = document.getElementById("status-message");
-
-function validateStatus() {
-  if (readOrNot.willValidate) {
-    if (readOrNot.validity.valid) {
-      statusMessage.textContent = "Input is valid.";
-      statusMessage.style.color = "green";
+function validateStatus(inputElement, messageElement) {
+  if (inputElement.willValidate) {
+    if (inputElement.validity.valid) {
+      messageElement.textContent = "Input is valid.";
+      messageElement.style.color = "green";
     } else {
-      statusMessage.textContent = "Input is invalid.";
-      statusMessage.style.color = "red";
+      messageElement.textContent = "Input is invalid.";
+      messageElement.style.color = "red";
     }
   }
 }
 
-readOrNot.oninput = validateStatus;
-readOrNot.addEventListener("keyup", function (event) {
-  if (event.key === "Enter") {
-    validateStatus();
-    event.preventDefault();
+const fields = [
+  {
+    selector: ".title",
+    messageSelector: "#title-message",
+    validationFunction: validateText,
+  },
+  {
+    selector: ".author",
+    messageSelector: "#author-message",
+    validationFunction: validateText,
+  },
+  {
+    selector: ".pages",
+    messageSelector: "#pages-message",
+    validationFunction: validatePages,
+  },
+  {
+    selector: ".status",
+    messageSelector: "#status-message",
+    validationFunction: validateStatus,
+  },
+];
+
+fields.forEach((field) => {
+  const inputElement = document.querySelector(field.selector);
+  const messageElement = document.getElementById(
+    field.messageSelector.slice(1)
+  );
+
+  if (inputElement && messageElement) {
+    inputElement.oninput = () =>
+      field.validationFunction(inputElement, messageElement);
+    inputElement.addEventListener("keyup", function (event) {
+      if (event.key === "Enter") {
+        field.validationFunction(inputElement, messageElement);
+        event.preventDefault();
+      }
+    });
   }
 });
 
@@ -145,7 +135,14 @@ submitButton.addEventListener("click", (event) => {
   const aBook = new Book(aTitle, aAuthor, aPages, aStatus);
 
   if (aTitle === "" || aAuthor === "" || aPages === "" || aStatus === "") {
-    return;
+    alert("One or more fields are missing info.");
+  } else if (
+    !title.validity.valid ||
+    !author.validity.valid ||
+    !pages.validity.valid ||
+    !readOrNot.validity.valid
+  ) {
+    alert("One or more fields are missing info.");
   } else {
     // stores new aBook object into the myLibrary array
     myLibrary.push(aBook);
